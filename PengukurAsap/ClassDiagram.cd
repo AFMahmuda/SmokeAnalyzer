@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PengukurAsap.UI_Config">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgCAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Boundary\UI_Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Boundary.I_Camera">
+    <Position X="2.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Boundary\I_Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.UI_Report">
+    <Position X="3" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAAACAAAACQAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Boundary\UI_Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.UI_SmokeAnalyser">
+    <Position X="0.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAEACAAAAAAAACQAAACAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Boundary\UI_SmokeAnalyser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.ConfigManager">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAgACAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\ConfigManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Controller.FileManager" Collapsed="true">
+    <Position X="4.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\FileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.ReportManager">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controller\ReportManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.SmokeAnalyzerManager">
+    <Position X="0.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAACAIABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Controller\SmokeAnalyzerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Config">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Entity.SmokeAnalyzer">
+    <Position X="0.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\SmokeAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Entity.SmokeClassifier" Collapsed="true">
+    <Position X="0.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\SmokeClassifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Report" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PengukurAsap.Entity.Smoke" Collapsed="true">
+    <Position X="2.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Smoke.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
