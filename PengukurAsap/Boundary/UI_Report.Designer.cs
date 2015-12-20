@@ -39,14 +39,14 @@ namespace PengukurAsap
             this.reportPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportPanel.AutoSize = true;
-            this.reportPanel.Location = new System.Drawing.Point(60, 59);
+            this.reportPanel.Location = new System.Drawing.Point(12, 59);
             this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(409, 399);
+            this.reportPanel.Size = new System.Drawing.Size(346, 399);
             this.reportPanel.TabIndex = 0;
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(391, 30);
+            this.backButton.Location = new System.Drawing.Point(273, 30);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace PengukurAsap
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(481, 510);
+            this.ClientSize = new System.Drawing.Size(370, 510);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.reportPanel);
             this.Name = "UI_Report";

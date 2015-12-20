@@ -21,8 +21,6 @@ namespace PengukurAsap
         {
         }
 
-        internal I_FileManager I_FileManager
-        { get; set; }
 
         internal void LoadAllData()
         {
@@ -52,6 +50,17 @@ namespace PengukurAsap
                 }
 
             }
+        }
+
+        public void DownloadReport(Report report)
+        {
+            string message;
+
+            if (I_FileManager.Download(report))
+                message = "Success!";
+            else
+                message = "Failed!";
+            uI_Report.ShowNotification(message);
         }
     }
 }

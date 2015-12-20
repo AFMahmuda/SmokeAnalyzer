@@ -34,7 +34,6 @@ namespace PengukurAsap
         public void AddHeader()
         {
             Label newLabel = new Label();
-
             newLabel.Text = "time";
             newLabel.Width = reportPanel.Width / 5;
             reportPanel.Controls.Add(newLabel);
@@ -48,8 +47,12 @@ namespace PengukurAsap
             newLabel.Text = "action";
             newLabel.Width = reportPanel.Width / 2;
             reportPanel.Controls.Add(newLabel);
+        }
 
 
+        public void ShowNotification(string message)
+        {
+            MessageBox.Show(message, "Download");
         }
 
         public void ShowAllData(List<Report> reports)
@@ -71,7 +74,7 @@ namespace PengukurAsap
 
             newLabel = new Label();
             newLabel.Text = report.Type.ToString();
-            newLabel.Size = new Size(reportPanel.Width / 6, 40);
+            newLabel.Size = new Size(reportPanel.Width / 5, 40);
             newLabel.TextAlign = ContentAlignment.MiddleLeft;
             reportPanel.Controls.Add(newLabel);
 
@@ -87,29 +90,19 @@ namespace PengukurAsap
                 backButton.Visible = true;
             };
             newButton.ImageAlign = ContentAlignment.MiddleLeft;
-            newButton.Size = new Size(newPanel.Width / 3, 30);
-
+            newButton.Size = new Size(newPanel.Width * 4 / 10, 30);
 
             newPanel.Controls.Add(newButton);
 
             newButton = new Button();
             newButton.Text = "download";
-            newButton.Click += (s, e) =>
-            {
-                if (I_FileManager.Download(report))
-                    MessageBox.Show("Success!", "Download");
-
-            };
+            newButton.Click += (s, e) => { ReportManager.DownloadReport(report); };
             newButton.ImageAlign = ContentAlignment.MiddleLeft;
-            newButton.Size = new Size(newPanel.Width / 3, 30);
-
+            newButton.Size = new Size(newPanel.Width * 2 / 5, 30);
 
             newPanel.Controls.Add(newButton);
-
             reportPanel.Controls.Add(newPanel);
         }
-
-
 
         public UI_Report()
         {
@@ -124,18 +117,15 @@ namespace PengukurAsap
 
         }
 
-
         internal void ShowReport(Report report)
         {
-
             reportPanel.FlowDirection = FlowDirection.TopDown;
             Label newLabel = new Label();
             newLabel.Text = "Taken :" + report.dateTime;
             newLabel.Text += "\nAverage type :" + report.Type;
             newLabel.Text += "\nNumber of Images :" + report.Smokes.Count;
-            newLabel.Size = new Size(reportPanel.Width, 100);
+            newLabel.Size = new Size(reportPanel.Width * 8 / 10, 60);
             reportPanel.Controls.Add(newLabel);
-
 
             int counter = 1;
             foreach (var item in report.Smokes)
@@ -148,17 +138,13 @@ namespace PengukurAsap
 
                 newLabel = new Label();
                 newLabel.Text = "image " + counter++
-                    + "  type : " + item.SmokeType;
+                    + "  type : " + item.Type;
                 reportPanel.Controls.Add(newLabel);
-
             }
-
-
         }
 
 
-        internal ReportManager ReportManager
-        { get; set; }
+        ReportManager ReportManager;
 
         private void backButton_Click(object sender, EventArgs e)
         {

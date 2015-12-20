@@ -1,13 +1,9 @@
-﻿using PengukurAsap.Boundary;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using PengukurAsap.Boundary;
+using PengukurAsap.Boundary.AnalyzerState;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -17,28 +13,36 @@ namespace PengukurAsap
     {
         SmokeAnalyzerManager smokeAnalyzerManager;
         I_Camera camera;
+        DateTime startTime;
+        public State State;
+
         bool isBusy = false;
         public bool IsBusy
         {
             set
             {
                 isBusy = value;
-                if (!value) { camera.Start(); startButton.Text = "Start Analize"; }
-                else { camera.Stop(); startButton.Text = "Stop Analize"; }
+                if (!value) { camera.Start(); }
+                else { camera.Stop(); startTime = DateTime.Now; }
             }
         }
 
+
         internal void ShowReport(Report report)
         {
-            MessageBox.Show("Success");
-
-            //TO DO add implementation
-
+            simpleReportLabel.Text = "Last Session : \n" +
+                                    "Time \t: " + report.dateTime + "\n" +
+                                    "Duration \t: " + (DateTime.Now - startTime).ToString() + "\n" +
+                                    "Image Count \t: " + report.Smokes.Count + "\n" +
+                                    "Result :\n" +
+                                    "Average Type\t: " + report.Type;
         }
         public UI_SmokeAnalyser()
         {
             InitializeComponent();
             camera = new I_Camera();
+            smokeAnalyzerManager = new SmokeAnalyzerManager(this);
+            State = new State(this, smokeAnalyzerManager);
             IsBusy = false;
 
             DispatcherTimer timer = new DispatcherTimer();
@@ -56,24 +60,17 @@ namespace PengukurAsap
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            if (!isBusy)
-            {
-                IsBusy = true;
-                smokeAnalyzerManager = new SmokeAnalyzerManager(this);
-                smokeAnalyzerManager.StartAnalyze();
-            }
-            else
-            {
-                IsBusy = false;
-                smokeAnalyzerManager.StopAnalyze();
-            }
-
+            State.StartOrStop();
         }
 
         private void configButton_Click(object sender, EventArgs e)
         {
-            if (!isBusy)
-                new Thread(new ThreadStart(RunUI_Config)).Start();
+            State.OpenConfig(RunUI_Config);
+        }
+
+        private void historyButton_Click(object sender, EventArgs e)
+        {
+            State.OpenHistory(RunUI_History);
         }
 
         private void RunUI_Config()
@@ -81,16 +78,27 @@ namespace PengukurAsap
             Application.Run(new UI_Config());
         }
 
-        private void historyButton_Click(object sender, EventArgs e)
-        {
-            if (!isBusy)
-                new Thread(new ThreadStart(RunUI_History)).Start();
-        }
-
         private void RunUI_History()
         {
-
             Application.Run(new UI_Report());
         }
+
+        internal void SetButtonText(string text)
+        {
+            startButton.Text = text;
+        }
+
+
+        internal void setImage(Image<Gray, byte> image)
+        {
+            imageBox.Image = image;
+        }
+
+        internal void setStatusLabel(string line)
+        {
+            status.Text = line;
+        }
+
+
     }
 }

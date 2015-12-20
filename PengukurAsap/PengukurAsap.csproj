@@ -75,11 +75,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boundary\AnalyzerState\State.cs" />
+    <Compile Include="Boundary\AnalyzerState\ActionState.cs" />
+    <Compile Include="Boundary\AnalyzerState\Buzy.cs" />
+    <Compile Include="Boundary\AnalyzerState\Idle.cs" />
     <Compile Include="Boundary\I_Camera.cs" />
     <Compile Include="Boundary\I_FileManager.cs" />
     <Compile Include="Entity\Config.cs" />
     <Compile Include="Controller\ConfigManager.cs" />
-    <Compile Include="Entity\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Entity\Smoke.cs" />
     <Compile Include="Entity\SmokeAnalyzer.cs" />
     <Compile Include="Entity\SmokeClassifier.cs" />

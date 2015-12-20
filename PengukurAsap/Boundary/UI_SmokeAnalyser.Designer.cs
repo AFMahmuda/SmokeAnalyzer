@@ -25,6 +25,8 @@ namespace PengukurAsap
             base.Dispose(disposing);
         }
 
+        
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -39,12 +41,13 @@ namespace PengukurAsap
             this.historyButton = new System.Windows.Forms.Button();
             this.imageBox = new Emgu.CV.UI.ImageBox();
             this.status = new System.Windows.Forms.Label();
+            this.simpleReportLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
             // 
             // configButton
             // 
-            this.configButton.Location = new System.Drawing.Point(498, 269);
+            this.configButton.Location = new System.Drawing.Point(518, 268);
             this.configButton.Name = "configButton";
             this.configButton.Size = new System.Drawing.Size(136, 23);
             this.configButton.TabIndex = 0;
@@ -54,7 +57,7 @@ namespace PengukurAsap
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(497, 12);
+            this.startButton.Location = new System.Drawing.Point(518, 12);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(136, 53);
             this.startButton.TabIndex = 1;
@@ -64,7 +67,7 @@ namespace PengukurAsap
             // 
             // historyButton
             // 
-            this.historyButton.Location = new System.Drawing.Point(499, 312);
+            this.historyButton.Location = new System.Drawing.Point(518, 312);
             this.historyButton.Name = "historyButton";
             this.historyButton.Size = new System.Drawing.Size(135, 23);
             this.historyButton.TabIndex = 2;
@@ -89,13 +92,22 @@ namespace PengukurAsap
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(35, 13);
             this.status.TabIndex = 3;
-            this.status.Text = "label1";
+            this.status.Text = "status";
+            // 
+            // simpleReportLabel
+            // 
+            this.simpleReportLabel.AutoSize = true;
+            this.simpleReportLabel.Location = new System.Drawing.Point(498, 72);
+            this.simpleReportLabel.Name = "simpleReportLabel";
+            this.simpleReportLabel.Size = new System.Drawing.Size(0, 13);
+            this.simpleReportLabel.TabIndex = 4;
             // 
             // UI_SmokeAnalyser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 366);
+            this.ClientSize = new System.Drawing.Size(666, 366);
+            this.Controls.Add(this.simpleReportLabel);
             this.Controls.Add(this.status);
             this.Controls.Add(this.imageBox);
             this.Controls.Add(this.historyButton);
@@ -111,15 +123,7 @@ namespace PengukurAsap
 
         
 
-        internal void setImage(Image<Gray, byte> image)
-        {
-            imageBox.Image = image;
-        }
-
-        internal void setLabel1(string line)
-        {
-            status.Text = line;
-        }
+       
 
         #endregion
 
@@ -128,5 +132,6 @@ namespace PengukurAsap
         private Button historyButton;
         private Emgu.CV.UI.ImageBox imageBox;
         private Label status;
+        private Label simpleReportLabel;
     }
 }

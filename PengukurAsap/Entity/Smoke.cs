@@ -13,7 +13,7 @@ namespace PengukurAsap.Entity
     {
         private byte[] rawImage;
         private int smokeType;
-        public int SmokeType { get { return smokeType; } }
+        public int Type { get { return smokeType; } }
 
         public Bitmap Bitmap
         {
@@ -23,7 +23,6 @@ namespace PengukurAsap.Entity
                 { return new Bitmap(ms); }
             }
         }
-
 
         public Smoke(Bitmap bitmap, int smokeType)
         {

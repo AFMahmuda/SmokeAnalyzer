@@ -12,9 +12,8 @@ namespace PengukurAsap.Entity
 
         internal int GetType(double averageColor)
         {
-
-            int devider = 255 / classNumber;
-            int type = (int)Math.Round(averageColor / devider);
+            int div = 255 / classNumber;
+            int type = (int)Math.Round(averageColor / div);
 
             return type;
         }

@@ -21,8 +21,7 @@ namespace PengukurAsap
             numericUpDown_num.Value = curr.Num;
         }
 
-        internal ConfigManager ConfigManager
-        { get; set; }
+        ConfigManager ConfigManager;
 
         private void buttonOK_Click(object sender, EventArgs e)
         {

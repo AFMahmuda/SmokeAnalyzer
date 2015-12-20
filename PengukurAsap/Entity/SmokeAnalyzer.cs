@@ -29,10 +29,11 @@ namespace PengukurAsap.Entity
 
         internal Report AnalyzeAll(List<Smoke> smokes)
         {
+
             int averageType = 0;
             foreach (Smoke smoke in smokes)
             {
-                averageType += smoke.SmokeType;
+                averageType += smoke.Type;
             }
             averageType /= smokes.Count;
             return new Report(averageType, smokes);
