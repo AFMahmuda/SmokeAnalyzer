@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PengukurAsap.Boundary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,49 @@ namespace PengukurAsap
 {
     class ReportManager
     {
-        internal Controller.FileManager FileManager
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+        List<Report> reports;
+        private UI_Report uI_Report;
 
-            set
-            {
-            }
+        public ReportManager(UI_Report uI_Report)
+        {
+            this.uI_Report = uI_Report;
         }
 
-        public void SaveReport()
+        public ReportManager()
         {
-            throw new System.NotImplementedException();
+        }
+
+        internal I_FileManager I_FileManager
+        { get; set; }
+
+        internal void LoadAllData()
+        {
+
+            reports = I_FileManager.LoadAllReport();
+            uI_Report.ClearPanel();
+            uI_Report.AddHeader();
+            uI_Report.ShowAllData(reports);
+        }
+
+        public void SaveReport(Report report)
+        {
+            I_FileManager.SaveReport(report);
+        }
+
+        internal void LoadReport(DateTime dateTime)
+        {
+            uI_Report.ClearPanel();
+            reports = I_FileManager.LoadAllReport();
+            foreach (var item in reports)
+            {
+                if (item.dateTime.Equals(dateTime))
+                {
+                    uI_Report.ClearPanel();
+                    uI_Report.ShowReport(item);
+                    break;
+                }
+
+            }
         }
     }
 }

@@ -3,14 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace PengukurAsap.Entity
 {
     class SmokeAnalyzer
     {
-        public void AnalizeImage()
+        SmokeClassifier smokeClassifier;
+
+        public SmokeAnalyzer()
         {
-            throw new System.NotImplementedException();
+            smokeClassifier = new SmokeClassifier();
+        }
+
+        internal Smoke AnalizeImage(Image<Gray, byte> image)
+        {
+            double averageColor = image.GetAverage().Intensity;
+            int smokeType = smokeClassifier.GetType(averageColor);
+            image = image.Resize(.25, Emgu.CV.CvEnum.Inter.Linear);
+            Smoke newSMoke = new Smoke(image.ToBitmap(), smokeType);
+            return newSMoke;
+
+        }
+
+        internal Report AnalyzeAll(List<Smoke> smokes)
+        {
+            int averageType = 0;
+            foreach (Smoke smoke in smokes)
+            {
+                averageType += smoke.SmokeType;
+            }
+            averageType /= smokes.Count;
+            return new Report(averageType, smokes);
         }
     }
 }

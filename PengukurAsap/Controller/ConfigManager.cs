@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PengukurAsap.Boundary;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,38 +10,27 @@ namespace PengukurAsap
 {
     class ConfigManager
     {
-        internal Config Config
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
 
-            set
-            {
-            }
+        public ConfigManager()
+        {
+            LoadConfig();
         }
 
-        internal Controller.FileManager FileManager
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+        Config config;
+        public Config Config { get { return config; } }
 
-            set
-            {
-            }
+        void LoadConfig()
+        {
+            config = I_FileManager.LoadConfig();
         }
 
-        public void LoadConfig()
+        public void SaveConfig(int time, int num)
         {
-            throw new System.NotImplementedException();
+            config = new Config(time, num);
+            I_FileManager.SaveConfig(config);
         }
 
-        public void SaveConfig()
-        {
-            throw new System.NotImplementedException();
-        }
+        internal Config Default
+        { get { return new Config(1, 15); } }
     }
 }

@@ -1,4 +1,9 @@
-﻿namespace PengukurAsap
+﻿using System;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using System.Windows.Forms;
+
+namespace PengukurAsap
 {
     partial class UI_SmokeAnalyser
     {
@@ -32,8 +37,9 @@
             this.configButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.historyButton = new System.Windows.Forms.Button();
-            this.imageBox1 = new Emgu.CV.UI.ImageBox();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
+            this.imageBox = new Emgu.CV.UI.ImageBox();
+            this.status = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
             // 
             // configButton
@@ -66,35 +72,61 @@
             this.historyButton.UseVisualStyleBackColor = true;
             this.historyButton.Click += new System.EventHandler(this.historyButton_Click);
             // 
-            // imageBox1
+            // imageBox
             // 
-            this.imageBox1.Location = new System.Drawing.Point(13, 13);
-            this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(478, 322);
-            this.imageBox1.TabIndex = 2;
-            this.imageBox1.TabStop = false;
+            this.imageBox.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBox.Location = new System.Drawing.Point(13, 13);
+            this.imageBox.Name = "imageBox";
+            this.imageBox.Size = new System.Drawing.Size(478, 322);
+            this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageBox.TabIndex = 2;
+            this.imageBox.TabStop = false;
+            // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(13, 342);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(35, 13);
+            this.status.TabIndex = 3;
+            this.status.Text = "label1";
             // 
             // UI_SmokeAnalyser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 366);
-            this.Controls.Add(this.imageBox1);
+            this.Controls.Add(this.status);
+            this.Controls.Add(this.imageBox);
             this.Controls.Add(this.historyButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.configButton);
             this.Name = "UI_SmokeAnalyser";
             this.Text = "SmokeAnalyser";
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
+        }
+
+        
+
+        internal void setImage(Image<Gray, byte> image)
+        {
+            imageBox.Image = image;
+        }
+
+        internal void setLabel1(string line)
+        {
+            status.Text = line;
         }
 
         #endregion
 
-        private System.Windows.Forms.Button configButton;
-        private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.Button historyButton;
-        private Emgu.CV.UI.ImageBox imageBox1;
+        private Button configButton;
+        private Button startButton;
+        private Button historyButton;
+        private Emgu.CV.UI.ImageBox imageBox;
+        private Label status;
     }
 }

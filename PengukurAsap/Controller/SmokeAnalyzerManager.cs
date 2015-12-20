@@ -1,62 +1,78 @@
-﻿using System;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using PengukurAsap.Boundary;
+using PengukurAsap.Entity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Threading;
+
 
 namespace PengukurAsap
 {
     class SmokeAnalyzerManager
     {
-        internal Entity.SmokeAnalyzer SmokeAnalyzer
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+        I_Camera camera;
+        Config config;
+        int photoTaken;
+        int period;
+        UI_SmokeAnalyser uI_SmokeAnalyser;
+        SmokeAnalyzer smokeAnalyzer;
+        DispatcherTimer timer;
+        List<Smoke> smokes = new List<Smoke>();
 
-            set
-            {
-            }
+        public SmokeAnalyzerManager(UI_SmokeAnalyser uI_SmokeAnalyser)
+        {
+            this.uI_SmokeAnalyser = uI_SmokeAnalyser;
+            smokeAnalyzer = new SmokeAnalyzer();
+            camera = new I_Camera();
+            period = 0;
+            photoTaken = 0;
         }
 
-        internal Entity.SmokeClassifier SmokeClassifier
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
 
-            set
-            {
-            }
+
+        public void StartAnalyze()
+        {
+            config = new ConfigManager().Config;
+
+            camera.Start();
+            period = config.Time * 60000 / config.Num;
+            uI_SmokeAnalyser.setLabel1("image taken : " +
+                            photoTaken.ToString() + "/ " + config.Num +
+                            ", taking image per :" + (period / 1000.0) + " s"); DateTime start = DateTime.Now;
+
+            timer = new DispatcherTimer();
+            timer.Tick += Analyze;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, period);
+            timer.Start();
+
         }
 
-        internal Boundary.I_Camera I_Camera
+        public void StopAnalyze()
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            timer.Stop();
+            camera.Stop();
 
-            set
-            {
-            }
+            Report report = smokeAnalyzer.AnalyzeAll(smokes);
+            new ReportManager().SaveReport(report);
+            uI_SmokeAnalyser.ShowReport(report);
+            uI_SmokeAnalyser.IsBusy = false;
         }
 
-        public void Analyze()
+        private void Analyze(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
-        }
+            photoTaken++;
+            Image<Gray, byte> image = camera.GetImage();
+            uI_SmokeAnalyser.setImage(image);
+            uI_SmokeAnalyser.setLabel1("image taken : " +
+                photoTaken.ToString() + "/ " + config.Num +
+                ", taking image per :" + (period / 1000.0) + " s");
 
-        public void SaveSmokeData()
-        {
-            throw new System.NotImplementedException();
-        }
+            Smoke newSmoke = smokeAnalyzer.AnalizeImage(image);
+            smokes.Add(newSmoke);
+            if (photoTaken == config.Num)
+                StopAnalyze();
 
-        public void StartAnalize()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
